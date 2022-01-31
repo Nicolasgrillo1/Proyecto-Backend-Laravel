@@ -20,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/saveUsers',"App\Http\Controllers\userController@saveUser")->name("saveUsers");
 
+Route::get('/test',"App\Http\Controllers\userController@test");
+

@@ -34,4 +34,9 @@ class userController extends Controller
         }
         
     }
+
+    public function test(Request $request)
+    {
+        return('21');
+    }
 }
