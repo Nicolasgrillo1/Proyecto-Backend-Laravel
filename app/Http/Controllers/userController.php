@@ -32,7 +32,7 @@ class userController extends Controller
             }
         }
         catch (Exception $e) {
-            return ('Excepción capturada: ' +  $e->getMessage());
+            // return ('Excepción capturada: ' +  $e->getMessage());
         }
         
     }
