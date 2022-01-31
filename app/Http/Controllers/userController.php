@@ -27,6 +27,8 @@ class userController extends Controller
                 ];
                 Mail::to($request['email'])->send(new \App\Mail\Email($details));
                 return["status"=>200];
+            }else{
+                return("Error objeto vacio");
             }
         }
         catch (Exception $e) {
