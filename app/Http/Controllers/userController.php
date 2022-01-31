@@ -25,6 +25,7 @@ class userController extends Controller
                     'title' => 'Post title: ' . $request['name'],
                     'body' => $request['message']
                 ];
+                
                 Mail::to($request['email'])->send(new \App\Mail\Email($details));
                 return["status"=>200];
             }else{
@@ -32,7 +33,7 @@ class userController extends Controller
             }
         }
         catch (Exception $e) {
-            // return ('Excepción capturada: ' +  $e->getMessage());
+            return($e);
         }
         
     }
