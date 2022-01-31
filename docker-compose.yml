@@ -1,0 +1,39 @@
+version: '3'
+services: 
+    app:
+        image: sk2020-img
+        container_name: sk2020-container
+        build: ./
+        restart: always
+        ports: 
+            - "81:80"
+        volumes:
+            - .:/var/www/html
+    myadmin:
+        # image: phpmyadmin
+        container_name: phpmyadmin
+        image: phpmyadmin/phpmyadmin
+        restart: always
+        depends_on:
+            - mysql
+        ports: 
+            - "82:20"
+        links:
+            - mysql:db
+    mysql:
+        container_name: mysql
+        image: mysql:5.6
+        restart: always
+        ports:
+            - 3306:3306
+        volumes:
+            - mysql:/var/lib/mysql
+        environment:
+            MYSQL_HOST: 0.0.0.0
+            MYSQL_HOST_PASSWORD: 
+volumes:
+    mysql:
+        driver: "local"
+
+
+
