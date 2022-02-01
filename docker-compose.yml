@@ -1,39 +1,19 @@
-version: '3'
-services: 
-    app:
-        image: sk2020-img
-        container_name: sk2020-container
-        build: ./
-        restart: always
-        ports: 
-            - "81:80"
+version: '3.8'
+
+networks:
+    net_service:
+        external:
+            name: net_service
+
+services:
+    apache:
+        image: 25watts/symfony:5.x
+        ports:
+            - 85:80
         volumes:
             - .:/var/www/html
-    myadmin:
-        # image: phpmyadmin
-        container_name: phpmyadmin
-        image: phpmyadmin/phpmyadmin
-        restart: always
-        depends_on:
-            - mysql
-        ports: 
-            - "82:20"
-        links:
-            - mysql:db
-    mysql:
-        container_name: mysql
-        image: mysql:5.6
-        restart: always
-        ports:
-            - 3306:3306
-        volumes:
-            - mysql:/var/lib/mysql
-        environment:
-            MYSQL_HOST: 0.0.0.0
-            MYSQL_HOST_PASSWORD: 
-volumes:
-    mysql:
-        driver: "local"
-
-
-
+        # environment:
+            # XDEBUG_CONFIG: client_host=172.20.0.1 client_port=9003 remote_enable=1 profiler_enable=1
+            # PHP_IDE_CONFIG: "serverName=Docker"
+        networks:
+            - net_service
